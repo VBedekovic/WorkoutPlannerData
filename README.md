@@ -9,20 +9,23 @@ Podaci sadrže plan treninga (workouts) s njihovim bitnim značkama i sadrže je
 **Autor**: Vedran Bedeković\
 **Verzija**: 1.0\
 **Jezik podataka**: Engleski\
-**Atributi**: name - naziv treninga\
-              workout_type - određuje tip treninga\
-              target_muscle_groups - lista ciljanih mišićnih skupina\ 
-              duration, rest_interval, 
-              time_of_day, weekday, 
-              water_intake_l, 
-              environment, 
-              exercises; 
-                exercise_name, 
-                weight_from, 
-                weight_to, 
-                weight_increment, 
-                reps, 
-                sets\
+**Atributi**:\
+              &emsp;<ins>name</ins> - naziv treninga\
+              &emsp;<ins>workout_type</ins> - određuje tip treninga\
+              &emsp;<ins>target_muscle_groups</ins> - lista ciljanih mišićnih skupina u treningu\
+              &emsp;<ins>duration</ins> - određuje trajanje treninga\
+              &emsp;<ins>rest_interval</ins> - određuje vrijeme odmora između serija i vježbi\
+              &emsp;<ins>time_of_day</ins> - određuje doba dana kada odraditi trening\
+              &emsp;<ins>weekday</ins> - određuje koji dam u tjednu odraditi trening (od 1 == Pon do 7 == Ned)\
+              &emsp;<ins>water_intake_l</ins> - određuje preporučenu količinu vode u litrama \
+              &emsp;<ins>environment</ins> - određuje okolinu u kojoj se odrađuje trening\
+              &emsp;<ins>exercises</ins>; - lista vježbi koje sadrži trening\
+                &emsp;&emsp;<ins>exercise_name</ins> - naziv vježbe\
+                &emsp;&emsp;<ins>weight_from</ins> - početna kilaža u kilogramima\
+                &emsp;&emsp;<ins>weight_to</ins> - maksimalna kilaža u kilogramima\
+                &emsp;&emsp;<ins>weight_increment</ins> - određeno povećanje kilaže završetkom jednog ponavljanja\
+                &emsp;&emsp;<ins>reps</ins> - broj ponavljanja u jednoj seriji\
+                &emsp;&emsp;<ins>sets</ins> - broj ponavljanja serija\
 **Datum izrade**: 28.10.2022.\
 **Datum zadnje izmjene**: 28.10.2022.\
 **Ključne riječi**: gym, workout, planner, exercise\
