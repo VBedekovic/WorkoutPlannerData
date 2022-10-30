@@ -1,0 +1,82 @@
+name,workout_type,target_muscle_group,duration,rest_interval,time_of_day,weekday,water_intake_l,environment,exercise_name,weight_from,weight_to,weight_increment,reps,sets
+Short chest workout,hypertrophy,chest,00:30:00,00:01:00,afternoon,1,1.5,gym,Flat Barbell Bench Press,40,50,2.5,10,4
+Short chest workout,hypertrophy,chest,00:30:00,00:01:00,afternoon,1,1.5,gym,Incline Dumbell Bench Press,30,30,0,10,4
+Short chest workout,hypertrophy,chest,00:30:00,00:01:00,afternoon,1,1.5,gym,Cable Crossover,20,25,1.5,10,3
+Short back workout,hypertrophy,back,00:30:00,00:01:00,afternoon,2,1.5,gym,Barbell Row,50,57.5,2.5,10,3
+Short back workout,hypertrophy,back,00:30:00,00:01:00,afternoon,2,1.5,gym,Lat pulldown,40,55,5,10,3
+Short back workout,hypertrophy,back,00:30:00,00:01:00,afternoon,2,1.5,gym,Deadlift,70,80,5,8,3
+Short leg workout,hypertrophy,legs,00:30:00,00:01:00,afternoon,3,2,gym,Barbell Squat,65,80,5,10,4
+Short leg workout,hypertrophy,legs,00:30:00,00:01:00,afternoon,3,2,gym,Romanian Deadlift,40,40,0,10,4
+Short leg workout,hypertrophy,legs,00:30:00,00:01:00,afternoon,3,2,gym,Barbell Calf Raise,30,40,2.5,10,4
+Long run,cardio,legs,01:00:00,00:05:00,morning,4,2.5,outdoors,Running,0,0,0,1,1
+Home full body workout,hypertrophy,abs,01:00:00,00:01:30,evening,1,1.5,home,Squats,0,0,0,30,4
+Home full body workout,hypertrophy,legs,01:00:00,00:01:30,evening,1,1.5,home,Squats,0,0,0,30,4
+Home full body workout,hypertrophy,shoulders,01:00:00,00:01:30,evening,1,1.5,home,Squats,0,0,0,30,4
+Home full body workout,hypertrophy,arms,01:00:00,00:01:30,evening,1,1.5,home,Squats,0,0,0,30,4
+Home full body workout,hypertrophy,back,01:00:00,00:01:30,evening,1,1.5,home,Squats,0,0,0,30,4
+Home full body workout,hypertrophy,chest,01:00:00,00:01:30,evening,1,1.5,home,Squats,0,0,0,30,4
+Home full body workout,hypertrophy,abs,01:00:00,00:01:30,evening,1,1.5,home,Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,legs,01:00:00,00:01:30,evening,1,1.5,home,Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,shoulders,01:00:00,00:01:30,evening,1,1.5,home,Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,arms,01:00:00,00:01:30,evening,1,1.5,home,Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,back,01:00:00,00:01:30,evening,1,1.5,home,Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,chest,01:00:00,00:01:30,evening,1,1.5,home,Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,abs,01:00:00,00:01:30,evening,1,1.5,home,Inverted Table Row,0,0,0,30,4
+Home full body workout,hypertrophy,legs,01:00:00,00:01:30,evening,1,1.5,home,Inverted Table Row,0,0,0,30,4
+Home full body workout,hypertrophy,shoulders,01:00:00,00:01:30,evening,1,1.5,home,Inverted Table Row,0,0,0,30,4
+Home full body workout,hypertrophy,arms,01:00:00,00:01:30,evening,1,1.5,home,Inverted Table Row,0,0,0,30,4
+Home full body workout,hypertrophy,back,01:00:00,00:01:30,evening,1,1.5,home,Inverted Table Row,0,0,0,30,4
+Home full body workout,hypertrophy,chest,01:00:00,00:01:30,evening,1,1.5,home,Inverted Table Row,0,0,0,30,4
+Home full body workout,hypertrophy,abs,01:00:00,00:01:30,evening,1,1.5,home,Pike Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,legs,01:00:00,00:01:30,evening,1,1.5,home,Pike Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,shoulders,01:00:00,00:01:30,evening,1,1.5,home,Pike Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,arms,01:00:00,00:01:30,evening,1,1.5,home,Pike Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,back,01:00:00,00:01:30,evening,1,1.5,home,Pike Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,chest,01:00:00,00:01:30,evening,1,1.5,home,Pike Pushups,0,0,0,30,4
+Home full body workout,hypertrophy,abs,01:00:00,00:01:30,evening,1,1.5,home,Crunches,0,0,0,30,4
+Home full body workout,hypertrophy,legs,01:00:00,00:01:30,evening,1,1.5,home,Crunches,0,0,0,30,4
+Home full body workout,hypertrophy,shoulders,01:00:00,00:01:30,evening,1,1.5,home,Crunches,0,0,0,30,4
+Home full body workout,hypertrophy,arms,01:00:00,00:01:30,evening,1,1.5,home,Crunches,0,0,0,30,4
+Home full body workout,hypertrophy,back,01:00:00,00:01:30,evening,1,1.5,home,Crunches,0,0,0,30,4
+Home full body workout,hypertrophy,chest,01:00:00,00:01:30,evening,1,1.5,home,Crunches,0,0,0,30,4
+Short arms workout,hypertrophy,arms,00:30:00,00:01:00,afternoon,5,1.5,gym,Dumbell Curl,10,10,0,10,4
+Short arms workout,hypertrophy,arms,00:30:00,00:01:00,afternoon,5,1.5,gym,EZ-Bar Skullcrusher,20,20,0,10,4
+Short arms workout,hypertrophy,arms,00:30:00,00:01:00,afternoon,5,1.5,gym,Standing Wrist Curls,20,20,0,10,4
+Short arms workout,hypertrophy,arms,00:30:00,00:01:00,afternoon,5,1.5,gym,Standing Wrist Extensions,20,20,0,10,4
+Abs workout,hypertrophy,abs,00:15:00,00:01:00,morning,6,0.5,home,Dragon Flag,0,0,0,10,3
+Abs workout,hypertrophy,abs,00:15:00,00:01:00,morning,6,0.5,home,Lying Leg Raise,0,0,0,10,3
+Abs workout,hypertrophy,abs,00:15:00,00:01:00,morning,6,0.5,home,Ab-Wheel Rollout,0,0,0,10,3
+Abs workout,hypertrophy,abs,00:15:00,00:01:00,morning,6,0.5,home,Crunch,0,0,0,10,3
+Abs workout,hypertrophy,abs,00:15:00,00:01:00,morning,6,0.5,home,Plank,0,0,0,1,1
+Upper body workout,strength,arms,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Press,30,40,2.5,10,4
+Upper body workout,strength,shoulders,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Press,30,40,2.5,10,4
+Upper body workout,strength,back,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Press,30,40,2.5,10,4
+Upper body workout,strength,chest,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Press,30,40,2.5,10,4
+Upper body workout,strength,arms,01:30:00,00:02:00,morning,2,2.5,gym,Chest Supported Row,30,40,2.5,10,4
+Upper body workout,strength,shoulders,01:30:00,00:02:00,morning,2,2.5,gym,Chest Supported Row,30,40,2.5,10,4
+Upper body workout,strength,back,01:30:00,00:02:00,morning,2,2.5,gym,Chest Supported Row,30,40,2.5,10,4
+Upper body workout,strength,chest,01:30:00,00:02:00,morning,2,2.5,gym,Chest Supported Row,30,40,2.5,10,4
+Upper body workout,strength,arms,01:30:00,00:02:00,morning,2,2.5,gym,Overhead Press,30,40,2.5,10,4
+Upper body workout,strength,shoulders,01:30:00,00:02:00,morning,2,2.5,gym,Overhead Press,30,40,2.5,10,4
+Upper body workout,strength,back,01:30:00,00:02:00,morning,2,2.5,gym,Overhead Press,30,40,2.5,10,4
+Upper body workout,strength,chest,01:30:00,00:02:00,morning,2,2.5,gym,Overhead Press,30,40,2.5,10,4
+Upper body workout,strength,arms,01:30:00,00:02:00,morning,2,2.5,gym,Pull-ups,0,0,0,8,3
+Upper body workout,strength,shoulders,01:30:00,00:02:00,morning,2,2.5,gym,Pull-ups,0,0,0,8,3
+Upper body workout,strength,back,01:30:00,00:02:00,morning,2,2.5,gym,Pull-ups,0,0,0,8,3
+Upper body workout,strength,chest,01:30:00,00:02:00,morning,2,2.5,gym,Pull-ups,0,0,0,8,3
+Upper body workout,strength,arms,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Curls,12,12,0,12,2
+Upper body workout,strength,shoulders,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Curls,12,12,0,12,2
+Upper body workout,strength,back,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Curls,12,12,0,12,2
+Upper body workout,strength,chest,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Curls,12,12,0,12,2
+Upper body workout,strength,arms,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Extensions,10,10,0,12,2
+Upper body workout,strength,shoulders,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Extensions,10,10,0,12,2
+Upper body workout,strength,back,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Extensions,10,10,0,12,2
+Upper body workout,strength,chest,01:30:00,00:02:00,morning,2,2.5,gym,Incline Dumbell Extensions,10,10,0,12,2
+Lower body workout,strength,legs,01:30:00,00:02:00,morning,4,2.5,gym,Barbell Back Squat,80,100,5,5,5
+Lower body workout,strength,legs,01:30:00,00:02:00,morning,4,2.5,gym,Romaninan Deadlift,50,50,0,8,3
+Lower body workout,strength,legs,01:30:00,00:02:00,morning,4,2.5,gym,Bulgarian Split Squat,30,40,2.5,10,4
+Lower body workout,strength,legs,01:30:00,00:02:00,morning,4,2.5,gym,Glute Ham Raise,40,50,2.5,8,3
+Lower body workout,strength,legs,01:30:00,00:02:00,morning,4,2.5,gym,Standing Single Leg Calf Raise,16,16,0,10,3
+Short shoulder workout,hypertrophy,shoulders,00:30:00,00:01:00,afternoon,5,1.5,gym,Military Press,25,35,2.5,8,4
+Short shoulder workout,hypertrophy,shoulders,00:30:00,00:01:00,afternoon,5,1.5,gym,Lateral DUmbell Raise,8,8,0,10,4
+Short shoulder workout,hypertrophy,shoulders,00:30:00,00:01:00,afternoon,5,1.5,gym,Rear Delt Dumbell Raise,4,4,0,10,4
