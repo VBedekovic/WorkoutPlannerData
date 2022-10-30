@@ -9,7 +9,20 @@ Podaci sadrže plan treninga (workouts) s njihovim bitnim značkama i sadrže je
 **Autor**: Vedran Bedeković\
 **Verzija**: 1.0\
 **Jezik podataka**: Engleski\
-**Atributi**: name, workout_type, target_muscle_groups, duration, rest_interval, time_of_day, weekday, water_intake_l, environment, exercises; exercise_name, weight_from, weight_to, weight_increment, reps, sets\
+**Atributi**: name - naziv treninga\
+              workout_type - određuje tip treninga\
+              target_muscle_groups - lista ciljanih mišićnih skupina\ 
+              duration, rest_interval, 
+              time_of_day, weekday, 
+              water_intake_l, 
+              environment, 
+              exercises; 
+                exercise_name, 
+                weight_from, 
+                weight_to, 
+                weight_increment, 
+                reps, 
+                sets\
 **Datum izrade**: 28.10.2022.\
 **Datum zadnje izmjene**: 28.10.2022.\
 **Ključne riječi**: gym, workout, planner, exercise\
