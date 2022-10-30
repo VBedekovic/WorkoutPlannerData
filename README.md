@@ -2,6 +2,7 @@
 Repozitorij sadrži otvorene podatke planiranja tjelovježbi u teretani ili prirodi na engleskom jeziku. Sadrži dump baze podataka gdje se nalaze podaci te zapisi tih podataka u CSV i JSON formatu. 
 
 ## Opis skupa podataka
+Podaci sadrže plan treninga (workouts) s njihovim bitnim značkama i sadrže jednu ili više tjelovježbi (exercises) s određenim ponavljanjima i težinom vježbe.
 
 
 **Licencija:** Creative Commons BY-SA - Imenovanje, dijeli pod istim uvjetima\
