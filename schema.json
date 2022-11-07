@@ -1,0 +1,2001 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://or.fer.unizg.hr/orworkouts.json",
+    "title": "Planned Workouts",
+    "description": "Lista isplaniranih treninga za otvoreno računarstvo.",
+    "type": "array",
+    "items": {
+        "title": "Trening",
+        "description": "Prikaz glavnih informacija o treningu te lista uključenih tjelovježbi.",
+        "type": "object",
+        "required": [
+            "name",
+            "workout_type",
+            "target_muscle_groups",
+            "duration",
+            "rest_interval",
+            "time_of_day",
+            "weekday",
+            "water_intake_l",
+            "environment",
+            "exercises"
+        ],
+        "properties": {
+            "name": {
+                "title": "Naslov treninga",
+                "description": "Naziv te ujedno i kratki opis treninga.",
+                "type": "string",
+                "examples": [
+                    "Short chest workout",
+                    "Short back workout",
+                    "Short leg workout",
+                    "Long run",
+                    "Home full body workout",
+                    "Short arms workout",
+                    "Abs workout",
+                    "Upper body workout",
+                    "Lower body workout",
+                    "Short shoulder workout"
+                ]
+            },
+            "workout_type": {
+                "title": "Vrsta treninga",
+                "description": "Određuje jednu od tri vrste treninga: cardio, strength ili hypertrophy.",
+                "type": "string",
+                "examples": [
+                    "hypertrophy",
+                    "cardio",
+                    "strength"
+                ]
+            },
+            "target_muscle_groups": {
+                "title": "Ciljne mišićne skupine",
+                "description": "Određuje koja se mišićna skupina trenira. Može biti definirano više od jedne skupine.",
+                "type": "array",
+                "items": {
+                    "title": "A Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "type": "string",
+                    "examples": [
+                        "chest",
+                        "back",
+                        "legs",
+                        "arms",
+                        "shoulders",
+                        "abs"
+                    ]
+                },
+                "examples": [
+                    [
+                        "chest"],
+                    [
+                        "back"],
+                    [
+                        "legs"],
+                    [
+                        "legs"],
+                    ["chest",
+                        "back",
+                        "arms",
+                        "shoulders",
+                        "legs",
+                        "abs"
+                    ],
+                    [
+                        "arms"],
+                    [
+                        "abs"],
+                    ["chest",
+                        "back",
+                        "shoulders",
+                        "arms"
+                    ],
+                    [
+                        "legs"],
+                    [
+                        "shoulders"]
+                ]
+            },
+            "duration": {
+                "title": "Trajanje",
+                "description": "Određuje trajanje treninga u satima i minutama.",
+                "type": "object",
+                "required": [
+                    "minutes",
+                    "hours"
+                ],
+                "properties": {
+                    "minutes": {
+                        "title": "Minute",
+                        "description": "Broj minuta.",
+                        "type": "integer",
+                        "examples": [
+                            30,
+                            15
+                        ]
+                    },
+                    "hours": {
+                        "title": "Sati",
+                        "description": "Broj sati.",
+                        "type": "integer",
+                        "examples": [
+                            1
+                        ]
+                    }
+                },
+                "examples": [{
+                    "minutes": 30
+                },
+                {
+                    "minutes": 30
+                },
+                {
+                    "minutes": 30
+                },
+                {
+                    "hours": 1
+                },
+                {
+                    "hours": 1
+                },
+                {
+                    "minutes": 30
+                },
+                {
+                    "minutes": 15
+                },
+                {
+                    "hours": 1,
+                    "minutes": 30
+                },
+                {
+                    "hours": 1,
+                    "minutes": 30
+                },
+                {
+                    "minutes": 30
+                }]
+            },
+            "rest_interval": {
+                "title": "Interval odmora",
+                "description": "Određuje vrijeme odmora između serija i vježbi u minutama i sekundama.",
+                "type": "object",
+                "required": [
+                    "minutes",
+                    "seconds"
+                ],
+                "properties": {
+                    "minutes": {
+                        "title": "Minute",
+                        "description": "Broj minuta.",
+                        "type": "integer",
+                        "examples": [
+                            1,
+                            5,
+                            2
+                        ]
+                    },
+                    "seconds": {
+                        "title": "Sekunde",
+                        "description": "Broj sekundi.",
+                        "type": "integer",
+                        "examples": [
+                            30
+                        ]
+                    }
+                },
+                "examples": [{
+                    "minutes": 1
+                },
+                {
+                    "minutes": 1
+                },
+                {
+                    "minutes": 1
+                },
+                {
+                    "minutes": 5
+                },
+                {
+                    "minutes": 1,
+                    "seconds": 30
+                },
+                {
+                    "minutes": 1
+                },
+                {
+                    "minutes": 1
+                },
+                {
+                    "minutes": 2
+                },
+                {
+                    "minutes": 2
+                },
+                {
+                    "minutes": 1
+                }]
+            },
+            "time_of_day": {
+                "title": "Doba dana",
+                "description": "Određuje doba dana kada odraditi trening.",
+                "type": "string",
+                "examples": [
+                    "afternoon",
+                    "morning",
+                    "evening"
+                ]
+            },
+            "weekday": {
+                "title": "Dan u tjednu",
+                "description": "Određuje koji dan u tjednu odraditi trening (od 1 == Pon do 7 == Ned)",
+                "type": "integer",
+                "examples": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            "water_intake_l": {
+                "title": "Količina vode",
+                "description": "Određuje preporučenu količinu vode u litrama.",
+                "type": [
+                    "number",
+                    "integer"
+                ],
+                "examples": [
+                    1.5,
+                    2,
+                    2.5,
+                    0.5
+                ]
+            },
+            "environment": {
+                "title": "Okolina",
+                "description": "Određuje okolinu u kojoj se odrađuje trening.",
+                "type": "string",
+                "examples": [
+                    "gym",
+                    "outdoors",
+                    "home"
+                ]
+            },
+            "exercises": {
+                "title": "Lista tjelovježbi",
+                "description": "Lista vježbi koje sadrži trening.",
+                "type": "array",
+                "items": {
+                    "title": "Tjelovježba",
+                    "description": "Objekt koji sadrži informacije o tjelovježbi.",
+                    "type": "object",
+                    "required": [
+                        "exercise_name",
+                        "weight_from",
+                        "weight_to",
+                        "weight_increment",
+                        "reps",
+                        "sets"
+                    ],
+                    "properties": {
+                        "exercise_name": {
+                            "title": "Naziv vježbe",
+                            "description": "Definira točno određenu vježbu.",
+                            "type": "string",
+                            "examples": [
+                                "Flat Barbell Bench Press",
+                                "Incline Dumbell Bench Press",
+                                "Cable Crossover",
+                                "Barbell Row",
+                                "Lat pulldown",
+                                "Deadlift",
+                                "Barbell Squat",
+                                "Romanian Deadlift",
+                                "Barbell Calf Raise",
+                                "Running",
+                                "Squats",
+                                "Pushups",
+                                "Inverted Table Row",
+                                "Pike Pushups",
+                                "Crunches",
+                                "Dumbell Curl",
+                                "EZ-Bar Skullcrusher",
+                                "Standing Wrist Curls",
+                                "Standing Wrist Extensions",
+                                "Dragon Flag",
+                                "Lying Leg Raise",
+                                "Ab-Wheel Rollout",
+                                "Crunch",
+                                "Plank",
+                                "Incline Dumbell Press",
+                                "Chest Supported Row",
+                                "Overhead Press",
+                                "Pull-ups",
+                                "Incline Dumbell Curls",
+                                "Incline Dumbell Extensions",
+                                "Barbell Back Squat",
+                                "Romaninan Deadlift",
+                                "Bulgarian Split Squat",
+                                "Glute Ham Raise",
+                                "Standing Single Leg Calf Raise",
+                                "Military Press",
+                                "Lateral DUmbell Raise",
+                                "Rear Delt Dumbell Raise"
+                            ]
+                        },
+                        "weight_from": {
+                            "title": "Početna težina/opterećenje",
+                            "description": "Određuje početna kilažu u kilogramima.",
+                            "type": "integer",
+                            "examples": [
+                                40,
+                                30,
+                                20,
+                                50,
+                                70,
+                                65,
+                                0,
+                                10,
+                                12,
+                                80,
+                                16,
+                                25,
+                                8,
+                                4
+                            ]
+                        },
+                        "weight_to": {
+                            "title": "Krajnja težina/opterećenje",
+                            "description": "Određuje maksimalnu kilažu u kilogramima.",
+                            "type": [
+                                "integer",
+                                "number"
+                            ],
+                            "examples": [
+                                50,
+                                30,
+                                25,
+                                57.5,
+                                55,
+                                80,
+                                40,
+                                0,
+                                10,
+                                20,
+                                12,
+                                100,
+                                16,
+                                35,
+                                8,
+                                4
+                            ]
+                        },
+                        "weight_increment": {
+                            "title": "Povećanje kilaže",
+                            "description": "Određeno povećanje kilaže završetkom jednog ponavljanja.",
+                            "type": [
+                                "number",
+                                "integer"
+                            ],
+                            "examples": [
+                                2.5,
+                                0,
+                                1.5,
+                                5
+                            ]
+                        },
+                        "reps": {
+                            "title": "Ponavljanja",
+                            "description": "Određuje broj ponavljanja u jednoj seriji.",
+                            "type": "integer",
+                            "examples": [
+                                10,
+                                8,
+                                1,
+                                30,
+                                12,
+                                5
+                            ]
+                        },
+                        "sets": {
+                            "title": "Serija",
+                            "description": "Određuje broj ponavljanja serija.",
+                            "type": "integer",
+                            "examples": [
+                                4,
+                                3,
+                                1,
+                                2,
+                                5
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "exercise_name": "Flat Barbell Bench Press",
+                        "weight_from": 40,
+                        "weight_to": 50,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Incline Dumbell Bench Press",
+                        "weight_from": 30,
+                        "weight_to": 30,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Cable Crossover",
+                        "weight_from": 20,
+                        "weight_to": 25,
+                        "weight_increment": 1.5,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Barbell Row",
+                        "weight_from": 50,
+                        "weight_to": 57.5,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Lat pulldown",
+                        "weight_from": 40,
+                        "weight_to": 55,
+                        "weight_increment": 5,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Deadlift",
+                        "weight_from": 70,
+                        "weight_to": 80,
+                        "weight_increment": 5,
+                        "reps": 8,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Barbell Squat",
+                        "weight_from": 65,
+                        "weight_to": 80,
+                        "weight_increment": 5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Romanian Deadlift",
+                        "weight_from": 40,
+                        "weight_to": 40,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Barbell Calf Raise",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Running",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 1,
+                        "sets": 1
+                    },
+                    {
+                        "exercise_name": "Squats",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Pushups",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Inverted Table Row",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Pike Pushups",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Crunches",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Dumbell Curl",
+                        "weight_from": 10,
+                        "weight_to": 10,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "EZ-Bar Skullcrusher",
+                        "weight_from": 20,
+                        "weight_to": 20,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Standing Wrist Curls",
+                        "weight_from": 20,
+                        "weight_to": 20,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Standing Wrist Extensions",
+                        "weight_from": 20,
+                        "weight_to": 20,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Dragon Flag",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Lying Leg Raise",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Ab-Wheel Rollout",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Crunch",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Plank",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 1,
+                        "sets": 1
+                    },
+                    {
+                        "exercise_name": "Incline Dumbell Press",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Chest Supported Row",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Overhead Press",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Pull-ups",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 8,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Incline Dumbell Curls",
+                        "weight_from": 12,
+                        "weight_to": 12,
+                        "weight_increment": 0,
+                        "reps": 12,
+                        "sets": 2
+                    },
+                    {
+                        "exercise_name": "Incline Dumbell Extensions",
+                        "weight_from": 10,
+                        "weight_to": 10,
+                        "weight_increment": 0,
+                        "reps": 12,
+                        "sets": 2
+                    },
+                    {
+                        "exercise_name": "Barbell Back Squat",
+                        "weight_from": 80,
+                        "weight_to": 100,
+                        "weight_increment": 5,
+                        "reps": 5,
+                        "sets": 5
+                    },
+                    {
+                        "exercise_name": "Romaninan Deadlift",
+                        "weight_from": 50,
+                        "weight_to": 50,
+                        "weight_increment": 0,
+                        "reps": 8,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Bulgarian Split Squat",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Glute Ham Raise",
+                        "weight_from": 40,
+                        "weight_to": 50,
+                        "weight_increment": 2.5,
+                        "reps": 8,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Standing Single Leg Calf Raise",
+                        "weight_from": 16,
+                        "weight_to": 16,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Military Press",
+                        "weight_from": 25,
+                        "weight_to": 35,
+                        "weight_increment": 2.5,
+                        "reps": 8,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Lateral DUmbell Raise",
+                        "weight_from": 8,
+                        "weight_to": 8,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Rear Delt Dumbell Raise",
+                        "weight_from": 4,
+                        "weight_to": 4,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    }]
+                },
+                "examples": [
+                    [{
+                        "exercise_name": "Flat Barbell Bench Press",
+                        "weight_from": 40,
+                        "weight_to": 50,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Incline Dumbell Bench Press",
+                        "weight_from": 30,
+                        "weight_to": 30,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Cable Crossover",
+                        "weight_from": 20,
+                        "weight_to": 25,
+                        "weight_increment": 1.5,
+                        "reps": 10,
+                        "sets": 3
+                    }],
+                    [{
+                        "exercise_name": "Barbell Row",
+                        "weight_from": 50,
+                        "weight_to": 57.5,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Lat pulldown",
+                        "weight_from": 40,
+                        "weight_to": 55,
+                        "weight_increment": 5,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Deadlift",
+                        "weight_from": 70,
+                        "weight_to": 80,
+                        "weight_increment": 5,
+                        "reps": 8,
+                        "sets": 3
+                    }],
+                    [{
+                        "exercise_name": "Barbell Squat",
+                        "weight_from": 65,
+                        "weight_to": 80,
+                        "weight_increment": 5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Romanian Deadlift",
+                        "weight_from": 40,
+                        "weight_to": 40,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Barbell Calf Raise",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    }],
+                    [{
+                        "exercise_name": "Running",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 1,
+                        "sets": 1
+                    }],
+                    [{
+                        "exercise_name": "Squats",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Pushups",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Inverted Table Row",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Pike Pushups",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Crunches",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 30,
+                        "sets": 4
+                    }],
+                    [{
+                        "exercise_name": "Dumbell Curl",
+                        "weight_from": 10,
+                        "weight_to": 10,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "EZ-Bar Skullcrusher",
+                        "weight_from": 20,
+                        "weight_to": 20,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Standing Wrist Curls",
+                        "weight_from": 20,
+                        "weight_to": 20,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Standing Wrist Extensions",
+                        "weight_from": 20,
+                        "weight_to": 20,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    }],
+                    [{
+                        "exercise_name": "Dragon Flag",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Lying Leg Raise",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Ab-Wheel Rollout",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Crunch",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Plank",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 1,
+                        "sets": 1
+                    }],
+                    [{
+                        "exercise_name": "Incline Dumbell Press",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Chest Supported Row",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Overhead Press",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Pull-ups",
+                        "weight_from": 0,
+                        "weight_to": 0,
+                        "weight_increment": 0,
+                        "reps": 8,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Incline Dumbell Curls",
+                        "weight_from": 12,
+                        "weight_to": 12,
+                        "weight_increment": 0,
+                        "reps": 12,
+                        "sets": 2
+                    },
+                    {
+                        "exercise_name": "Incline Dumbell Extensions",
+                        "weight_from": 10,
+                        "weight_to": 10,
+                        "weight_increment": 0,
+                        "reps": 12,
+                        "sets": 2
+                    }],
+                    [{
+                        "exercise_name": "Barbell Back Squat",
+                        "weight_from": 80,
+                        "weight_to": 100,
+                        "weight_increment": 5,
+                        "reps": 5,
+                        "sets": 5
+                    },
+                    {
+                        "exercise_name": "Romaninan Deadlift",
+                        "weight_from": 50,
+                        "weight_to": 50,
+                        "weight_increment": 0,
+                        "reps": 8,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Bulgarian Split Squat",
+                        "weight_from": 30,
+                        "weight_to": 40,
+                        "weight_increment": 2.5,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Glute Ham Raise",
+                        "weight_from": 40,
+                        "weight_to": 50,
+                        "weight_increment": 2.5,
+                        "reps": 8,
+                        "sets": 3
+                    },
+                    {
+                        "exercise_name": "Standing Single Leg Calf Raise",
+                        "weight_from": 16,
+                        "weight_to": 16,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 3
+                    }],
+                    [{
+                        "exercise_name": "Military Press",
+                        "weight_from": 25,
+                        "weight_to": 35,
+                        "weight_increment": 2.5,
+                        "reps": 8,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Lateral DUmbell Raise",
+                        "weight_from": 8,
+                        "weight_to": 8,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    },
+                    {
+                        "exercise_name": "Rear Delt Dumbell Raise",
+                        "weight_from": 4,
+                        "weight_to": 4,
+                        "weight_increment": 0,
+                        "reps": 10,
+                        "sets": 4
+                    }]
+                ]
+            }
+        },
+        "examples": [{
+            "name": "Short chest workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "chest"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 1,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Flat Barbell Bench Press",
+                "weight_from": 40,
+                "weight_to": 50,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Incline Dumbell Bench Press",
+                "weight_from": 30,
+                "weight_to": 30,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Cable Crossover",
+                "weight_from": 20,
+                "weight_to": 25,
+                "weight_increment": 1.5,
+                "reps": 10,
+                "sets": 3
+            }]
+        },
+        {
+            "name": "Short back workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "back"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 2,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Barbell Row",
+                "weight_from": 50,
+                "weight_to": 57.5,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Lat pulldown",
+                "weight_from": 40,
+                "weight_to": 55,
+                "weight_increment": 5,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Deadlift",
+                "weight_from": 70,
+                "weight_to": 80,
+                "weight_increment": 5,
+                "reps": 8,
+                "sets": 3
+            }]
+        },
+        {
+            "name": "Short leg workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "legs"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 3,
+            "water_intake_l": 2,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Barbell Squat",
+                "weight_from": 65,
+                "weight_to": 80,
+                "weight_increment": 5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Romanian Deadlift",
+                "weight_from": 40,
+                "weight_to": 40,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Barbell Calf Raise",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            }]
+        },
+        {
+            "name": "Long run",
+            "workout_type": "cardio",
+            "target_muscle_groups": [
+                "legs"
+            ],
+            "duration": {
+                "hours": 1
+            },
+            "rest_interval": {
+                "minutes": 5
+            },
+            "time_of_day": "morning",
+            "weekday": 4,
+            "water_intake_l": 2.5,
+            "environment": "outdoors",
+            "exercises": [{
+                "exercise_name": "Running",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 1,
+                "sets": 1
+            }]
+        },
+        {
+            "name": "Home full body workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "chest",
+                "back",
+                "arms",
+                "shoulders",
+                "legs",
+                "abs"
+            ],
+            "duration": {
+                "hours": 1
+            },
+            "rest_interval": {
+                "minutes": 1,
+                "seconds": 30
+            },
+            "time_of_day": "evening",
+            "weekday": 1,
+            "water_intake_l": 1.5,
+            "environment": "home",
+            "exercises": [{
+                "exercise_name": "Squats",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Pushups",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Inverted Table Row",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Pike Pushups",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Crunches",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            }]
+        },
+        {
+            "name": "Short arms workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "arms"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 5,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Dumbell Curl",
+                "weight_from": 10,
+                "weight_to": 10,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "EZ-Bar Skullcrusher",
+                "weight_from": 20,
+                "weight_to": 20,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Standing Wrist Curls",
+                "weight_from": 20,
+                "weight_to": 20,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Standing Wrist Extensions",
+                "weight_from": 20,
+                "weight_to": 20,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            }]
+        },
+        {
+            "name": "Abs workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "abs"
+            ],
+            "duration": {
+                "minutes": 15
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "morning",
+            "weekday": 6,
+            "water_intake_l": 0.5,
+            "environment": "home",
+            "exercises": [{
+                "exercise_name": "Dragon Flag",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Lying Leg Raise",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Ab-Wheel Rollout",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Crunch",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Plank",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 1,
+                "sets": 1
+            }]
+        },
+        {
+            "name": "Upper body workout",
+            "workout_type": "strength",
+            "target_muscle_groups": [
+                "chest",
+                "back",
+                "shoulders",
+                "arms"
+            ],
+            "duration": {
+                "hours": 1,
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 2
+            },
+            "time_of_day": "morning",
+            "weekday": 2,
+            "water_intake_l": 2.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Incline Dumbell Press",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Chest Supported Row",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Overhead Press",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Pull-ups",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 8,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Incline Dumbell Curls",
+                "weight_from": 12,
+                "weight_to": 12,
+                "weight_increment": 0,
+                "reps": 12,
+                "sets": 2
+            },
+            {
+                "exercise_name": "Incline Dumbell Extensions",
+                "weight_from": 10,
+                "weight_to": 10,
+                "weight_increment": 0,
+                "reps": 12,
+                "sets": 2
+            }]
+        },
+        {
+            "name": "Lower body workout",
+            "workout_type": "strength",
+            "target_muscle_groups": [
+                "legs"
+            ],
+            "duration": {
+                "hours": 1,
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 2
+            },
+            "time_of_day": "morning",
+            "weekday": 4,
+            "water_intake_l": 2.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Barbell Back Squat",
+                "weight_from": 80,
+                "weight_to": 100,
+                "weight_increment": 5,
+                "reps": 5,
+                "sets": 5
+            },
+            {
+                "exercise_name": "Romaninan Deadlift",
+                "weight_from": 50,
+                "weight_to": 50,
+                "weight_increment": 0,
+                "reps": 8,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Bulgarian Split Squat",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Glute Ham Raise",
+                "weight_from": 40,
+                "weight_to": 50,
+                "weight_increment": 2.5,
+                "reps": 8,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Standing Single Leg Calf Raise",
+                "weight_from": 16,
+                "weight_to": 16,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            }]
+        },
+        {
+            "name": "Short shoulder workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "shoulders"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 5,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Military Press",
+                "weight_from": 25,
+                "weight_to": 35,
+                "weight_increment": 2.5,
+                "reps": 8,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Lateral DUmbell Raise",
+                "weight_from": 8,
+                "weight_to": 8,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Rear Delt Dumbell Raise",
+                "weight_from": 4,
+                "weight_to": 4,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            }]
+        }]
+    },
+    "examples": [
+        [{
+            "name": "Short chest workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "chest"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 1,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Flat Barbell Bench Press",
+                "weight_from": 40,
+                "weight_to": 50,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Incline Dumbell Bench Press",
+                "weight_from": 30,
+                "weight_to": 30,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Cable Crossover",
+                "weight_from": 20,
+                "weight_to": 25,
+                "weight_increment": 1.5,
+                "reps": 10,
+                "sets": 3
+            }]
+        },
+        {
+            "name": "Short back workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "back"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 2,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Barbell Row",
+                "weight_from": 50,
+                "weight_to": 57.5,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Lat pulldown",
+                "weight_from": 40,
+                "weight_to": 55,
+                "weight_increment": 5,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Deadlift",
+                "weight_from": 70,
+                "weight_to": 80,
+                "weight_increment": 5,
+                "reps": 8,
+                "sets": 3
+            }]
+        },
+        {
+            "name": "Short leg workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "legs"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 3,
+            "water_intake_l": 2,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Barbell Squat",
+                "weight_from": 65,
+                "weight_to": 80,
+                "weight_increment": 5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Romanian Deadlift",
+                "weight_from": 40,
+                "weight_to": 40,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Barbell Calf Raise",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            }]
+        },
+        {
+            "name": "Long run",
+            "workout_type": "cardio",
+            "target_muscle_groups": [
+                "legs"
+            ],
+            "duration": {
+                "hours": 1
+            },
+            "rest_interval": {
+                "minutes": 5
+            },
+            "time_of_day": "morning",
+            "weekday": 4,
+            "water_intake_l": 2.5,
+            "environment": "outdoors",
+            "exercises": [{
+                "exercise_name": "Running",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 1,
+                "sets": 1
+            }]
+        },
+        {
+            "name": "Home full body workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "chest",
+                "back",
+                "arms",
+                "shoulders",
+                "legs",
+                "abs"
+            ],
+            "duration": {
+                "hours": 1
+            },
+            "rest_interval": {
+                "minutes": 1,
+                "seconds": 30
+            },
+            "time_of_day": "evening",
+            "weekday": 1,
+            "water_intake_l": 1.5,
+            "environment": "home",
+            "exercises": [{
+                "exercise_name": "Squats",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Pushups",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Inverted Table Row",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Pike Pushups",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Crunches",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 30,
+                "sets": 4
+            }]
+        },
+        {
+            "name": "Short arms workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "arms"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 5,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Dumbell Curl",
+                "weight_from": 10,
+                "weight_to": 10,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "EZ-Bar Skullcrusher",
+                "weight_from": 20,
+                "weight_to": 20,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Standing Wrist Curls",
+                "weight_from": 20,
+                "weight_to": 20,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Standing Wrist Extensions",
+                "weight_from": 20,
+                "weight_to": 20,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            }]
+        },
+        {
+            "name": "Abs workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "abs"
+            ],
+            "duration": {
+                "minutes": 15
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "morning",
+            "weekday": 6,
+            "water_intake_l": 0.5,
+            "environment": "home",
+            "exercises": [{
+                "exercise_name": "Dragon Flag",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Lying Leg Raise",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Ab-Wheel Rollout",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Crunch",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Plank",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 1,
+                "sets": 1
+            }]
+        },
+        {
+            "name": "Upper body workout",
+            "workout_type": "strength",
+            "target_muscle_groups": [
+                "chest",
+                "back",
+                "shoulders",
+                "arms"
+            ],
+            "duration": {
+                "hours": 1,
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 2
+            },
+            "time_of_day": "morning",
+            "weekday": 2,
+            "water_intake_l": 2.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Incline Dumbell Press",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Chest Supported Row",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Overhead Press",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Pull-ups",
+                "weight_from": 0,
+                "weight_to": 0,
+                "weight_increment": 0,
+                "reps": 8,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Incline Dumbell Curls",
+                "weight_from": 12,
+                "weight_to": 12,
+                "weight_increment": 0,
+                "reps": 12,
+                "sets": 2
+            },
+            {
+                "exercise_name": "Incline Dumbell Extensions",
+                "weight_from": 10,
+                "weight_to": 10,
+                "weight_increment": 0,
+                "reps": 12,
+                "sets": 2
+            }]
+        },
+        {
+            "name": "Lower body workout",
+            "workout_type": "strength",
+            "target_muscle_groups": [
+                "legs"
+            ],
+            "duration": {
+                "hours": 1,
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 2
+            },
+            "time_of_day": "morning",
+            "weekday": 4,
+            "water_intake_l": 2.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Barbell Back Squat",
+                "weight_from": 80,
+                "weight_to": 100,
+                "weight_increment": 5,
+                "reps": 5,
+                "sets": 5
+            },
+            {
+                "exercise_name": "Romaninan Deadlift",
+                "weight_from": 50,
+                "weight_to": 50,
+                "weight_increment": 0,
+                "reps": 8,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Bulgarian Split Squat",
+                "weight_from": 30,
+                "weight_to": 40,
+                "weight_increment": 2.5,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Glute Ham Raise",
+                "weight_from": 40,
+                "weight_to": 50,
+                "weight_increment": 2.5,
+                "reps": 8,
+                "sets": 3
+            },
+            {
+                "exercise_name": "Standing Single Leg Calf Raise",
+                "weight_from": 16,
+                "weight_to": 16,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 3
+            }]
+        },
+        {
+            "name": "Short shoulder workout",
+            "workout_type": "hypertrophy",
+            "target_muscle_groups": [
+                "shoulders"
+            ],
+            "duration": {
+                "minutes": 30
+            },
+            "rest_interval": {
+                "minutes": 1
+            },
+            "time_of_day": "afternoon",
+            "weekday": 5,
+            "water_intake_l": 1.5,
+            "environment": "gym",
+            "exercises": [{
+                "exercise_name": "Military Press",
+                "weight_from": 25,
+                "weight_to": 35,
+                "weight_increment": 2.5,
+                "reps": 8,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Lateral DUmbell Raise",
+                "weight_from": 8,
+                "weight_to": 8,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            },
+            {
+                "exercise_name": "Rear Delt Dumbell Raise",
+                "weight_from": 4,
+                "weight_to": 4,
+                "weight_increment": 0,
+                "reps": 10,
+                "sets": 4
+            }]
+        }]
+    ]
+}
