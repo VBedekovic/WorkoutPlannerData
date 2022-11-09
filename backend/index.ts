@@ -10,8 +10,14 @@ const app = express();
 app.use(express.static(path.join(__dirname + '/public')));
 
 
+//Routes
+import datatableAPI from "./routes/datatableAPIRoutes";
+app.use("/api", datatableAPI);
+
+
+//Default - send Angular App
 app.get( "*", ( req, res ) => {
-    res.sendFile(path.resolve('./dist/public/index.html'))
+    res.sendFile(path.resolve('./dist/public/index.html'));
 });
 
 app.listen(port, () => {
