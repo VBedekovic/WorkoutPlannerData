@@ -1,5 +1,6 @@
 import express from 'express';
 import db from "../db";
+import { Parser } from 'json2csv';
 
 const router = express.Router()
 
@@ -234,6 +235,451 @@ router.get("/datatableDataSearch", async (req, res) => {
     }
 
     res.json(results.rows);
+
+    
+});
+
+
+router.get("/getCurrentJSON", async (req, res) => {
+    let searchField = req.query.field as string;
+    let searchValue = req.query.value as string;
+    if (!search_req.includes(searchField)) {
+        res.status(400).send("Invalid parameters!")
+        return
+    }
+
+    let results;
+    if (special_search_req.includes(searchField)) {
+        let searchValues = searchValue.trim().split(/\s+/);
+        if (searchField === "target_muscle_groups") {
+            let st = `SELECT name, 
+                        workout_type,
+                        '' as target_muscle_groups,
+                        duration,
+                        rest_interval,
+                        time_of_day,
+                        weekday,
+                        water_intake_L,
+                        environment,
+                        '' as exercises
+                        FROM workout
+                        WHERE EXISTS (`
+            
+            let isFirst = true;
+            for (let value of searchValues) {
+                if (!isFirst) st += `INTERSECT
+                                    `;
+                isFirst = false;
+                st += `SELECT workout_target_muscle_group.workout_id
+                        FROM workout_target_muscle_group
+                        WHERE workout.workout_id = workout_target_muscle_group.workout_id
+                            AND target_muscle_group LIKE lower('%${value}%')
+                        `
+            }
+
+            st += `)`
+            results = await db.query(st)
+
+        } else if (searchField === "exercise_name") {
+            results = await db.query(`SELECT name, 
+                                        workout_type,
+                                        '' as target_muscle_groups,
+                                        duration,
+                                        rest_interval,
+                                        time_of_day,
+                                        weekday,
+                                        water_intake_L,
+                                        environment,
+                                        '' as exercises
+                                        FROM workout
+                                        WHERE EXISTS (
+                                            SELECT *
+                                                FROM workout workout2 NATURAL JOIN exercise_in_workout NATURAL JOIN exercise
+                                                WHERE workout.workout_id = workout2.workout_id
+                                                    AND lower(exercise_name) LIKE lower('%${searchValue}%')
+                                        );`)
+        
+        } else if (searchField === "wild") {
+            let st = `SELECT DISTINCT name, 
+                        workout_type,
+                        '' as target_muscle_groups,
+                        duration,
+                        rest_interval,
+                        time_of_day,
+                        weekday,
+                        water_intake_L,
+                        environment,
+                        '' as exercises
+                        FROM (
+                        `
+
+            st += `SELECT name, 
+                        workout_type,
+                        '' as target_muscle_groups,
+                        duration,
+                        rest_interval,
+                        time_of_day,
+                        weekday,
+                        water_intake_L,
+                        environment,
+                        '' as exercises
+                        FROM workout
+                        WHERE EXISTS (`
+            
+            let isFirst = true;
+            for (let value of searchValues) {
+                if (!isFirst) st += `INTERSECT
+                                    `;
+                isFirst = false;
+                st += `SELECT workout_target_muscle_group.workout_id
+                        FROM workout_target_muscle_group
+                        WHERE workout.workout_id = workout_target_muscle_group.workout_id
+                            AND target_muscle_group LIKE lower('%${value}%')
+                        `
+            }
+            st += `)
+                    `
+            
+
+            st += `UNION
+                    SELECT name, 
+                        workout_type,
+                        '' as target_muscle_groups,
+                        duration,
+                        rest_interval,
+                        time_of_day,
+                        weekday,
+                        water_intake_L,
+                        environment,
+                        '' as exercises
+                        FROM workout
+                        WHERE EXISTS (
+                            SELECT *
+                                FROM workout workout2 NATURAL JOIN exercise_in_workout NATURAL JOIN exercise
+                                WHERE workout.workout_id = workout2.workout_id
+                                    AND lower(exercise_name) LIKE lower('%${searchValue}%')
+                        )
+                ` 
+            
+            
+            for (let field of ["name", "workout_type", "time_of_day", "environment"]) {
+                st += `UNION
+                        SELECT name, 
+                            workout_type,
+                            '' as target_muscle_groups,
+                            duration,
+                            rest_interval,
+                            time_of_day,
+                            weekday,
+                            water_intake_L,
+                            environment,
+                            '' as exercises
+                            FROM workout
+                            WHERE lower(${field}) LIKE lower('%${searchValue}%')
+                `
+            }
+            
+
+            st += `) as foo`
+
+            results = await db.query(st)
+
+
+        } else {
+            results = await db.query(`SELECT name, 
+                                        workout_type,
+                                        '' as target_muscle_groups,
+                                        duration,
+                                        rest_interval,
+                                        time_of_day,
+                                        weekday,
+                                        water_intake_L,
+                                        environment,
+                                        '' as exercises
+                                        FROM workout;`)
+        }
+    } else {
+        results = await db.query(`SELECT name, 
+                                    workout_type,
+                                    '' as target_muscle_groups,
+                                    duration,
+                                    rest_interval,
+                                    time_of_day,
+                                    weekday,
+                                    water_intake_L,
+                                    environment,
+                                    '' as exercises
+                                    FROM workout
+                                    WHERE lower(${searchField}) LIKE lower('%${req.query.value}%');`)
+
+    }
+
+    for (var row of results.rows) {
+        let target_results = await db.query(`SELECT target_muscle_group
+                                            FROM workout NATURAL JOIN workout_target_muscle_group
+                                            WHERE name = '${row.name}';`)
+        row.target_muscle_groups = []
+        target_results.rows.forEach(target_row => row.target_muscle_groups.push(target_row.target_muscle_group))
+
+
+
+        let exercise_results = await db.query(`SELECT exercise_name, weight_from, weight_to, weight_increment, reps, sets
+                                            FROM workout NATURAL JOIN exercise_in_workout NATURAL JOIN exercise
+                                            WHERE name = '${row.name}';`)
+        row.exercises = []
+        exercise_results.rows.forEach(exercise_row => {
+            row.exercises.push(exercise_row)
+        })
+
+    }
+
+    res.json(results.rows);
+
+});
+
+router.get("/getCurrentCSV", async (req, res) => {
+    let searchField = req.query.field as string;
+    let searchValue = req.query.value as string;
+    if (!search_req.includes(searchField)) {
+        res.status(400).send("Invalid parameters!")
+        return
+    }
+
+    let results;
+    if (special_search_req.includes(searchField)) {
+        let searchValues = searchValue.trim().split(/\s+/);
+        if (searchField === "target_muscle_groups") {
+            let st = `SELECT name, 
+                        workout_type,
+                        target_muscle_group,
+                        TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                        TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                        time_of_day,
+                        weekday,
+                        water_intake_L,
+                        environment,
+                        exercise_name,
+                        weight_from,
+                        weight_to,
+                        weight_increment,
+                        reps,
+                        sets
+                        FROM workout 
+                        NATURAL JOIN workout_target_muscle_group 
+                        NATURAL JOIN exercise_in_workout 
+                        NATURAL JOIN exercise
+                        WHERE EXISTS (`
+            
+            let isFirst = true;
+            for (let value of searchValues) {
+                if (!isFirst) st += `INTERSECT
+                                    `;
+                isFirst = false;
+                st += `SELECT workout_target_muscle_group.workout_id
+                        FROM workout_target_muscle_group
+                        WHERE workout.workout_id = workout_target_muscle_group.workout_id
+                            AND target_muscle_group LIKE lower('%${value}%')
+                        `
+            }
+
+            st += `)`
+            results = await db.query(st)
+
+        } else if (searchField === "exercise_name") {
+            results = await db.query(`SELECT name, 
+                                        workout_type,
+                                        target_muscle_group,
+                                        TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                                        TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                                        time_of_day,
+                                        weekday,
+                                        water_intake_L,
+                                        environment,
+                                        exercise_name,
+                                        weight_from,
+                                        weight_to,
+                                        weight_increment,
+                                        reps,
+                                        sets
+                                        FROM workout 
+                                        NATURAL JOIN workout_target_muscle_group 
+                                        NATURAL JOIN exercise_in_workout 
+                                        NATURAL JOIN exercise
+                                        WHERE EXISTS (
+                                            SELECT *
+                                                FROM workout workout2 NATURAL JOIN exercise_in_workout NATURAL JOIN exercise
+                                                WHERE workout.workout_id = workout2.workout_id
+                                                    AND lower(exercise_name) LIKE lower('%${searchValue}%')
+                                        );`)
+        
+        } else if (searchField === "wild") {
+            let st = `SELECT name, 
+                        workout_type,
+                        target_muscle_group,
+                        TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                        TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                        time_of_day,
+                        weekday,
+                        water_intake_L,
+                        environment,
+                        exercise_name,
+                        weight_from,
+                        weight_to,
+                        weight_increment,
+                        reps,
+                        sets
+                        FROM (
+                        `
+
+            st += `SELECT name, 
+                    workout_type,
+                    target_muscle_group,
+                    TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                    TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                    time_of_day,
+                    weekday,
+                    water_intake_L,
+                    environment,
+                    exercise_name,
+                    weight_from,
+                    weight_to,
+                    weight_increment,
+                    reps,
+                    sets
+                    FROM workout 
+                    NATURAL JOIN workout_target_muscle_group 
+                    NATURAL JOIN exercise_in_workout 
+                    NATURAL JOIN exercise
+                        WHERE EXISTS (`
+            
+            let isFirst = true;
+            for (let value of searchValues) {
+                if (!isFirst) st += `INTERSECT
+                                    `;
+                isFirst = false;
+                st += `SELECT workout_target_muscle_group.workout_id
+                        FROM workout_target_muscle_group
+                        WHERE workout.workout_id = workout_target_muscle_group.workout_id
+                            AND target_muscle_group LIKE lower('%${value}%')
+                        `
+            }
+            st += `)
+                    `
+            
+
+            st += `UNION
+                    SELECT name, 
+                    workout_type,
+                    target_muscle_group,
+                    TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                    TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                    time_of_day,
+                    weekday,
+                    water_intake_L,
+                    environment,
+                    exercise_name,
+                    weight_from,
+                    weight_to,
+                    weight_increment,
+                    reps,
+                    sets
+                    FROM workout 
+                    NATURAL JOIN workout_target_muscle_group 
+                    NATURAL JOIN exercise_in_workout 
+                    NATURAL JOIN exercise
+                        WHERE EXISTS (
+                            SELECT *
+                                FROM workout workout2 NATURAL JOIN exercise_in_workout NATURAL JOIN exercise
+                                WHERE workout.workout_id = workout2.workout_id
+                                    AND lower(exercise_name) LIKE lower('%${searchValue}%')
+                        )
+                ` 
+            
+            
+            for (let field of ["name", "workout_type", "time_of_day", "environment"]) {
+                st += `UNION
+                        SELECT name, 
+                            workout_type,
+                            target_muscle_group,
+                            TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                            TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                            time_of_day,
+                            weekday,
+                            water_intake_L,
+                            environment,
+                            exercise_name,
+                            weight_from,
+                            weight_to,
+                            weight_increment,
+                            reps,
+                            sets
+                            FROM workout 
+                            NATURAL JOIN workout_target_muscle_group 
+                            NATURAL JOIN exercise_in_workout 
+                            NATURAL JOIN exercise
+                            WHERE lower(${field}) LIKE lower('%${searchValue}%')
+                `
+            }
+            
+
+            st += `) as foo`
+
+            results = await db.query(st)
+
+
+        } else {
+            results = await db.query(`SELECT name, 
+                                        workout_type,
+                                        target_muscle_group,
+                                        TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                                        TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                                        time_of_day,
+                                        weekday,
+                                        water_intake_L,
+                                        environment,
+                                        exercise_name,
+                                        weight_from,
+                                        weight_to,
+                                        weight_increment,
+                                        reps,
+                                        sets
+                                        FROM workout 
+                                        NATURAL JOIN workout_target_muscle_group 
+                                        NATURAL JOIN exercise_in_workout 
+                                        NATURAL JOIN exercise;`)
+        }
+    } else {
+        results = await db.query(`SELECT name, 
+                                    workout_type,
+                                    target_muscle_group,
+                                    TO_CHAR(duration::interval, 'HH24:MI:SS') as duration,
+                                    TO_CHAR(rest_interval::interval, 'HH24:MI:SS') as rest_interval,
+                                    time_of_day,
+                                    weekday,
+                                    water_intake_L,
+                                    environment,
+                                    exercise_name,
+                                    weight_from,
+                                    weight_to,
+                                    weight_increment,
+                                    reps,
+                                    sets
+                                    FROM workout 
+                                    NATURAL JOIN workout_target_muscle_group 
+                                    NATURAL JOIN exercise_in_workout 
+                                    NATURAL JOIN exercise
+                                    WHERE lower(${searchField}) LIKE lower('%${req.query.value}%');`)
+
+    }
+
+    //res.json(results.rows);
+
+    const json2csv = new Parser();
+
+    const csv = json2csv.parse(results.rows);
+    res.header('Content-Type', 'text/csv');
+    res.attachment("workoutplannerdatabysearch.csv");
+    return res.send(csv);
 
     
 });

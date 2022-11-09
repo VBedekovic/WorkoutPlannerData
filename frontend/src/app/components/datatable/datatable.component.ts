@@ -18,6 +18,9 @@ export class DatatableComponent implements OnInit {
   searchValue = ""
   searchField = ""
 
+  fileValue = ""
+  fileField = "wild"
+
   constructor(private datatableService: DatatableService) { }
 
   ngOnInit(): void {
@@ -37,11 +40,14 @@ export class DatatableComponent implements OnInit {
 
   getSearchData() {
     this.isLoading = true;
+    this.isEmpty = false;
     this.datatableService.getSearchData(this.searchField, this.searchValue).subscribe({
       next: (response) => {
         this.dataEntries = response.body ? response.body : [];
         if (this.dataEntries.length == 0) this.isEmpty = true;
         this.isLoading = false;
+        this.fileField = this.searchField;
+        this.fileValue = this.searchValue;
       },
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;
@@ -92,5 +98,13 @@ export class DatatableComponent implements OnInit {
       }
     }
     return st
+  }
+
+  getJSON() {
+    window.location.href = "/api/getCurrentJSON?field=" + encodeURIComponent(this.fileField) + "&value=" + encodeURIComponent(this.fileValue)
+  }
+
+  getCSV() {
+    window.location.href = "/api/getCurrentCSV?field=" + encodeURIComponent(this.fileField) + "&value=" + encodeURIComponent(this.fileValue)
   }
 }

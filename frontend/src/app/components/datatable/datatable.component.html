@@ -22,7 +22,13 @@
                 <button type="submit" class="btn btn-primary">Pretraži</button>
             </div>
         </div>
-      </form>
+    </form>
+    <div class="row">
+        <div *ngIf="!isEmpty" class="col-md-2 offset-10 my-2">
+            <button class="btn btn-success mx-1" (click)="getJSON()">JSON</button>
+            <button class="btn btn-success mx-1" (click)="getCSV()">CSV</button>
+        </div>
+    </div>
 </div>
 
 
