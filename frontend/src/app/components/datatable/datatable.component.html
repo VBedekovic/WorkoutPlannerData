@@ -1,1 +1,77 @@
-<p>datatable works!</p>
+<div class="container my-2">
+    <form ngNativeValidate (ngSubmit)="getSearchData()">
+        <div class="row">
+            <div class="form-group col-md-6">
+              <label for="pretraga">Polje za pretragu</label>
+              <input type="text" class="form-control" id="pretraga" placeholder="Unesite vrijednost" [(ngModel)]="searchValue" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="field">Pretraga po:</label>
+                <select id="field" class="form-control form-select" [(ngModel)]="searchField" required>
+                  <option value="wild" selected>Sva polja (wildcard)</option>
+                  <option value="name">Naziv</option>
+                  <option value="workout_type">Type</option>
+                  <option value="time_of_day">Day Period</option>
+                  <option value="environment">Environment</option>
+                  <option value="target_muscle_groups">Targeted Muscles</option>
+                  <option value="exercise_name">Exercise Name</option>
+        
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Pretraži</button>
+            </div>
+        </div>
+      </form>
+</div>
+
+
+<div class="d-flex justify-content-center mt-2 mb-1" *ngIf="isLoading">
+    <div class="lds-ripple"><div></div><div></div></div>
+</div>
+
+<div *ngIf="!isLoading" class="container">
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col" style="width:  8%">Targeted Muscles</th>
+                <th scope="col" class="text-center">Duration</th>
+                <th scope="col" class="text-center">Rest</th>
+                <th scope="col">Day Period</th>
+                <th scope="col" class="text-center">Weekday</th>
+                <th scope="col" class="text-center">Water (L)</th>
+                <th scope="col">Environment</th>
+                <th scope="col">Exercises</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let workout of dataEntries">
+                <td>{{workout.name}}</td>
+                <td>{{workout.workout_type}}</td>
+                <td>{{formatList(workout.target_muscle_groups)}}</td>
+                <td class="text-center">{{workout.duration.hours ? workout.duration.hours + "h" : null}} {{workout.duration.minutes ? workout.duration.minutes + "m" : null}}</td>
+                <td class="text-center">{{workout.rest_interval.minutes ? workout.rest_interval.minutes + "m" : null}} {{workout.rest_interval.seconds ? workout.rest_interval.seconds + "s" : null}}</td>
+                <td>{{workout.time_of_day}}</td>
+                <td class="text-center">{{getDayOfWeek(workout.weekday)}}</td>
+                <td class="text-center">{{workout.water_intake_l}}</td>
+                <td>{{workout.environment}}</td>
+
+                <td>
+                    <ng-container *ngFor="let exercise of workout.exercises">
+                        <span>&#183;</span>
+                        <span>
+                            {{exercise.exercise_name}}
+                        </span>
+                        <br>
+                    </ng-container>
+                </td>
+            </tr>
+                
+        </tbody>
+    </table>
+</div>
+
+
