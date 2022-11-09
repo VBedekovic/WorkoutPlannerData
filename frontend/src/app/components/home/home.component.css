@@ -1,0 +1,13 @@
+dt {
+    display: inline;
+}
+
+dd {
+    display: inline;
+}
+
+
+dt::after {
+    content: ": ";
+}
+

@@ -1,0 +1,9 @@
+.selected-tab {
+    color: #e31e24;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.nav-link:hover {
+    color: #e31e24;
+}
