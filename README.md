@@ -7,7 +7,7 @@ Podaci sadrže plan treninga (workouts) s njihovim bitnim značkama i sadrže je
 
 **Licencija:** Creative Commons BY-SA - Imenovanje, dijeli pod istim uvjetima\
 **Autor**: Vedran Bedeković\
-**Verzija**: 1.0\
+**Verzija**: 2.0\
 **Jezik podataka**: Engleski\
 **Atributi**:\
               &emsp;<ins>name</ins> - naziv treninga\
