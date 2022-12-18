@@ -1,0 +1,440 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Workout Planner - OpenAPI 3.0",
+    "description": "This is a workout planner web server based on the OpenAPI 3.0 specification. This project was made for academic purposes.",
+    "contact": {
+      "name": "Vedran Bedeković",
+      "email": "vedran.bedekovic@fer.hr"
+    },
+    "license": {
+      "name": "Creative Commons Zero v1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/workouts": {
+      "get": {
+        "summary": "Get all workouts from database",
+        "description": "Lists all workouts with their fields and exercises from the database",
+        "operationId": "getAllWorkouts",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new workout to the database",
+        "description": "Add a new properly specified workout with exercises to the database",
+        "operationId": "createWorkout",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workout_type",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "target_muscle_groups",
+            "in": "body",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "duration",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "properties": {
+              "hours": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "minutes": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          {
+            "name": "rest_interval",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "properties": {
+              "minutes": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "seconds": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          {
+            "name": "time_of_day",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "weekday",
+            "in": "body",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          },
+          {
+            "name": "water_intake_l",
+            "in": "body",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "environment",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "exercises",
+            "in": "body",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exercise_name": {
+                  "type": "string"
+                },
+                "weight_from": {
+                  "type": "number"
+                },
+                "weight_to": {
+                  "type": "number"
+                },
+                "weight_increment": {
+                  "type": "number"
+                },
+                "reps": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "sets": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful create workout operation"
+          },
+          "400": {
+            "description": "Provided request body has missing fields and/or wrong values"
+          }
+        }
+      }
+    },
+    "/workouts/{workout_id}": {
+      "get": {
+        "summary": "Get workout specified by id",
+        "description": "Recive workout with the provided id from the database",
+        "operationId": "getWorkout",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "workout_id",
+            "in": "path",
+            "description": "ID of workout",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Workout with provided id does not exist"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update workout specified by id",
+        "description": "Update workout with the provided id and properly specified fields",
+        "operationId": "updateWorkout",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "workout_id",
+            "in": "path",
+            "description": "ID of workout",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workout_type",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "target_muscle_groups",
+            "in": "body",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "duration",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "properties": {
+              "hours": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "minutes": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          {
+            "name": "rest_interval",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "properties": {
+              "minutes": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "seconds": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          {
+            "name": "time_of_day",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "weekday",
+            "in": "body",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          },
+          {
+            "name": "water_intake_l",
+            "in": "body",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "environment",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "exercises",
+            "in": "body",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exercise_name": {
+                  "type": "string"
+                },
+                "weight_from": {
+                  "type": "number"
+                },
+                "weight_to": {
+                  "type": "number"
+                },
+                "weight_increment": {
+                  "type": "number"
+                },
+                "reps": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "sets": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Provided request body has missing fields and/or wrong values"
+          },
+          "404": {
+            "description": "Workout with provided id does not exist"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove workout from database",
+        "description": "Remove workout specified by id from the database",
+        "operationId": "deleteWorkout",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "workout_id",
+            "in": "path",
+            "description": "ID of workout",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Workout with provided id does not exist"
+          }
+        }
+      }
+    },
+    "/exercises": {
+      "get": {
+        "summary": "Get all exercises from database",
+        "description": "Lists all exercises with their fields from the database",
+        "operationId": "getAllExercises",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/exercises/{exercise_id}": {
+      "get": {
+        "summary": "Get exercise specified by id",
+        "description": "Recive exercise with the provided id from the database",
+        "operationId": "getExercise",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "exercise_id",
+            "in": "path",
+            "description": "ID of exercise",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Exercise with provided id does not exist"
+          }
+        }
+      }
+    },
+    "/workouts/{workout_id}/exercises": {
+      "get": {
+        "summary": "Get exercises specified by workout id",
+        "description": "Recive all exercises from the workout specified by id from the database",
+        "operationId": "getWorkoutExercises",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "workout_id",
+            "in": "path",
+            "description": "ID of workout",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Workout with provided id does not exist"
+          }
+        }
+      }
+    },
+    "/openapi": {
+      "get": {
+        "summary": "Get OpenAPI document",
+        "description": "Recive OpenAPI specification",
+        "operationId": "getOpenAPI",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    }
+  }
+}

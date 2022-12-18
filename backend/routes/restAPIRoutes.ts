@@ -1,10 +1,12 @@
 import express from 'express';
 import db from "../db";
+var fs = require('fs');
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 
 import { validateExercise, validateWorkout } from '../services/validate';
 import { responseWrap } from '../services/responseWrapper';
+import path from 'path';
 
 const router = express.Router()
 
@@ -438,6 +440,18 @@ router.all("/workouts/:id(\\d+)/exercises", async (req, res) => {
 })
 
 
+router.get("/openapi", async (req, res) => {
+    res.status(200).json(
+        responseWrap("OK", "Retrieved OpenAPI specification",
+            JSON.parse(fs.readFileSync(path.resolve('./dist/public/openapi.json'), 'utf8'))
+        )
+    )
+})
+
+router.all("/openapi", async (req, res) => {
+    res.status(501).json(responseWrap("Not Implemented", "Method not implemented for requested resource"))
+})
+/* 
 router.post("/workout-valdiate-test", jsonParser, async (req, res) => {
 
     if (validateWorkout(req.body)) res.status(200).json(responseWrap("OK", "Workout valid", req.body))
@@ -449,5 +463,5 @@ router.post("/exercise-valdiate-test", jsonParser, async (req, res) => {
     if (validateExercise(req.body)) res.status(200).json(responseWrap("OK", "Exercise valid", req.body))
     else res.status(400).json(responseWrap("Bad Request", "Missing fields and/or wrong values"))
 })
-
+ */
 export = router;

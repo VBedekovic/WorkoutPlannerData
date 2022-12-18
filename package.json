@@ -4,10 +4,11 @@
   "description": "Repozitorij sadrži otvorene podatke planiranja tjelovježbi u teretani ili prirodi na engleskom jeziku. Sadrži dump baze podataka gdje se nalaze podaci te zapisi tih podataka u CSV i JSON formatu.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run clean && tsc && npm run copy-static && npm run copy-csv && npm run copy-json",
+    "build": "npm run clean && tsc && npm run copy-static && npm run copy-csv && npm run copy-json && npm run copy-openapi",
     "clean": "rimraf ./dist",
     "copy-csv": "copyfiles ./workoutplanner.csv dist/public/",
     "copy-json": "copyfiles ./workoutplanner.json dist/public/",
+    "copy-openapi": "copyfiles ./openapi.json dist/public/",
     "copy-static": "copyfiles -u 1 backend/public/** dist/",
     "prestart": "npm run build",
     "start": "node .",
