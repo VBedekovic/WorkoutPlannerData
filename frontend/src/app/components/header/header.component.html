@@ -12,6 +12,18 @@
             [routerLinkActiveOptions]="{exact : true}">
             Datatable
           </a>
+          <a *ngIf="!loggedIn" class="nav-item nav-link" href="/login">
+            Prijava
+          </a>
+          <a *ngIf="loggedIn" class="nav-item nav-link" routerLink="/userprofile" [routerLinkActive]="['selected-tab']">
+            Korisnički profil
+          </a>
+          <a *ngIf="loggedIn" class="nav-item nav-link" (click)="refreshFiles()" href="#">
+            Osvježi preslike
+          </a>
+          <a *ngIf="loggedIn" class="nav-item nav-link" href="/logout">
+            Odjava
+          </a>
         </div>
       </div>
     </div>
