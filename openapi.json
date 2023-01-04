@@ -421,6 +421,72 @@
         }
       }
     },
+    "/login": {
+      "get": {
+        "summary": "Auth0 login redirect",
+        "description": "Redirects user to Auth0 login screen. If he is already logged in, he is redirected to home screen.",
+        "operationId": "login",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "summary": "Auth0 logout redirect",
+        "description": "Redirects user to Auth0 logout and then home screen",
+        "operationId": "logout",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "summary": "Get user's Auth0 data",
+        "description": "Returns all the Auth0 data of the logged in user",
+        "operationId": "getProfile",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Request sent from unauthorized session."
+          }
+        }
+      }
+    },
+    "/user/refresh": {
+      "get": {
+        "summary": "Refresh json and csv file",
+        "description": "Synchronizes json and csv files to current database data.",
+        "operationId": "refreshFiles",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "Request sent from unauthorized session."
+          }
+        }
+      }
+    },
     "/openapi": {
       "get": {
         "summary": "Get OpenAPI document",
