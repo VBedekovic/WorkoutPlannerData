@@ -1,9 +1,10 @@
 import fs from "fs";
 import db from "../db";
 const fastcsv = require("fast-csv");
-const ws = fs.createWriteStream("workoutPlanner.csv");
+
 
 export async function write_to_csv() {
+    const ws = fs.createWriteStream("workoutPlanner.csv");
     db.query(`SELECT name, 
             workout_type,
             target_muscle_group,
@@ -24,21 +25,20 @@ export async function write_to_csv() {
             NATURAL JOIN exercise_in_workout 
             NATURAL JOIN exercise;`, (err, res) => {
 
-    if (err) {
-        console.log(err.stack);
-    } else {
-        const jsonData = JSON.parse(JSON.stringify(res.rows));
+        if (err) {
+            console.log(err.stack);
+        } else {
+            const jsonData = JSON.parse(JSON.stringify(res.rows));
 
-        fastcsv
-            .write(jsonData, { headers: true })
-            .on("finish", function () {
-                console.log("Write to workoutPlanner.csv successful!");
-            })
-            .pipe(ws);
-    }
-});
+            fastcsv
+                .write(jsonData, { headers: true })
+                .on("finish", function () {
+                    console.log("Write to workoutPlanner.csv successful!");
+                })
+                .pipe(ws);
+        }
+    });
 }
-
 
 
 export async function write_to_json() {
@@ -81,5 +81,5 @@ export async function write_to_json() {
     catch (error) {
         console.log(error)
     }
-    
+
 }

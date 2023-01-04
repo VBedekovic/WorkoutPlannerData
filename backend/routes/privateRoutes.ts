@@ -18,9 +18,11 @@ router.get('/profile', (req: AuthRequest, res) => {
 
 router.get("/refresh", async (req: AuthRequest, res) => {
     if (req.oidc.isAuthenticated()) {
-        await Promise.all([write_to_csv(), write_to_json()])
-        fs.copyFileSync("workoutPlanner.csv", "dist/public/workoutPlanner.csv");
+        await write_to_csv()
+        await write_to_json()
+
         fs.copyFileSync("workoutPlanner.json", "dist/public/workoutPlanner.json");
+        fs.copyFileSync("workoutPlanner.csv", "dist/public/workoutPlanner.csv");
         res.status(200).send()
     }
     else {
